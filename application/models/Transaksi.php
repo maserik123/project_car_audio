@@ -1,0 +1,76 @@
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+class Transaksi extends CI_Model
+{
+    public $table='tbl_transaksi';
+    public $id_transaksi='id_transaksi';
+    public $id_user='id_user';
+    public $id_produk='id_produk';
+    public $id_pembayaran='id_pembayaran';
+    public $tgl_transaksi='tgl_transaksi';
+    public $aktif='aktif';
+    public $order='DESC';
+
+    function __construct()
+    {
+        parent::__construct();
+    }
+	function get_all(){
+		return $this->db->query('select * from tbl_transaksi a, tbl_produk b, tbl_pembayaran c, tbl_user d WHERE
+                                    a.id_produk=b.id_produk AND a.id_pembayaran=c.id_pembayaran AND 
+                                    a.id_user=d.id_user AND c.aktif!=1 GROUP BY a.id_pembayaran ORDER BY c.status_pembayaran ASC')->result();
+    }
+	function get_all_limit(){
+		return $this->db->query('select * from tbl_transaksi a, tbl_produk b, tbl_pembayaran c, tbl_user d WHERE
+                                    a.id_produk=b.id_produk AND a.id_pembayaran=c.id_pembayaran AND 
+                                    a.id_user=d.id_user AND a.aktif=0 GROUP BY a.id_user ORDER BY a.tgl_transaksi DESC')->result();
+    }
+	function get_by_userlimit($kode){
+		return $this->db->query('select * from tbl_transaksi a, tbl_produk b, tbl_pembayaran c, tbl_user d WHERE
+                                    a.id_produk=b.id_produk AND a.id_pembayaran=c.id_pembayaran AND 
+                                    a.id_user=d.id_user AND a.aktif=0 AND a.id_user="'.$kode.'" ORDER BY a.tgl_transaksi ASC')->result();
+    }
+	function get_by_pelanggan($kode){
+		return $this->db->query('select * from tbl_transaksi where id_user="'.$kode.'" order by tgl_transaksi DESC')->result();
+	}
+	function get_by_pembayaran($kode){
+		return $this->db->query('select * from tbl_transaksi a, tbl_produk b, tbl_pembayaran c, tbl_user d WHERE
+                                    a.id_produk=b.id_produk AND a.id_pembayaran=c.id_pembayaran AND 
+                                    a.id_user=d.id_user AND a.aktif!=1 AND a.id_pembayaran="'.$kode.'" order by a.id_transaksi DESC')->result();
+	}
+    function get_by_pembayaranSingle($kode){
+		return $this->db->query('select * from tbl_transaksi a, tbl_produk b, tbl_pembayaran c, tbl_user d WHERE
+                                    a.id_produk=b.id_produk AND a.id_pembayaran=c.id_pembayaran AND 
+                                    a.id_user=d.id_user AND a.aktif!=1 AND a.id_pembayaran="'.$kode.'" order by a.id_transaksi DESC')->row();
+	}
+    function get_history($kode){
+		return $this->db->query('select * from tbl_transaksi a, tbl_pembayaran b, tbl_produk c, tbl_user d where 
+        a.id_pembayaran=b.id_pembayaran AND a.id_produk=c.id_produk AND a.id_user=d.id_user AND
+        a.id_user="'.$kode.'" AND a.aktif!=1 GROUP BY a.id_pembayaran order by a.id_pembayaran DESC')->result();
+	}
+    function get_by_kode($kode){
+        $this->db->where($this->id_transaksi, $kode);
+        return $this->db->get($this->table)->row();
+    }
+    function insert($data)
+    {
+        $this->db->insert($this->table, $data);
+    }
+    function update($kode, $data)
+    {
+        $this->db->where($this->id_transaksi, $kode);
+        $this->db->update($this->table, $data);
+    }
+    function updateCheckout($kode,$aktif, $data)
+    {
+        $this->db->where($this->id_user, $kode);
+        $this->db->where($this->aktif, $aktif);
+        $this->db->update($this->table, $data);
+    }
+	function delete($id)
+    {
+        $this->db->where($this->id_transaksi, $id);
+        $this->db->delete($this->table);
+    }
+}
