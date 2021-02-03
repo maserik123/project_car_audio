@@ -31,8 +31,8 @@ $level = $this->session->userdata('level');
     <div class="container">
         <div class="row">
             <p><?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?></p>
-            <div class="col-lg-12" style="padding:30px;border:3px solid green;margin-top:-100px;min-height:300px;">
-                <h3>Riwayat Belanja</h3>
+            <div class="col-lg-12" style="padding:30px;border:3px solid green;margin-top:-100px;">
+                <h3>Feedback Pembeli</h3>
                 <br>
                 <small><?php if ($this->session->flashdata('kosong')) { ?>
                         <div style="color:red;text-align:right;"> <?php echo $this->session->flashdata('kosong'); ?></div>
@@ -40,66 +40,29 @@ $level = $this->session->userdata('level');
                         <div style="color:success;text-align:right;"> <?php echo $this->session->flashdata('success'); ?></div>
                     <?php } ?>
                 </small>
+
                 <hr>
-                <table width="100%">
-                    <?php
-                    $no = 1;
-                    foreach ($history as $u) {
-                        $kode = $u->id_transaksi;
-                        $query = $this->db->query("SELECT * FROM tbl_transaksi a,tbl_produk b WHERE a.id_produk=b.id_produk AND id_pembayaran='" . $u->id_pembayaran . "' AND a.id_pembayaran != 1")->result();
-                    ?>
+                <table style="width: 100%;">
+                    <thead>
                         <tr>
-                            <th>Nama Penerima</th>
-                            <th width="25%">Alamat Pengiriman</th>
-                            <!-- <th>Nomor Resi</th> -->
-                            <th>Total Harga</th>
-                            <!-- <th>Kurir</th> -->
-                            <th>Status Pengiriman</th>
-                            <th>Tgl Bayar</th>
+                            <th><strong>Nama Akun</strong></th>
+                            <th><strong>Nama Barang</strong></th>
+                            <th><strong>Gambar Barang</strong></th>
+                            <th><strong>Komentar</strong></th>
                         </tr>
-                        <tr>
-                            <td><?= $u->nama_user ?></td>
-                            <td><?= $u->alamat_user ?>, Prov. <?= $u->provinsi_user ?>, Kota. <?= $u->kota_user ?>, Kode Pos : <?= $u->kode_pos ?>, Telp. <?= $u->telp_user ?></td>
-                            <!-- <td><?= $u->nomor_resi ?></td> -->
-                            <td>Rp. <?php echo number_format($u->total_pembayaran, 0, ",", "."); ?></td>
-                            <!-- <td><?php echo $u->kurir_pengiriman ?></td> -->
-                            <td><?= $u->status_pembayaran ?></td>
-                            <td><?= $u->tgl_pembayaran ?></td>
-                        </tr>
-                        <tr>
-                            <th>Foto</th>
-                            <th>Nama Barang</th>
-                            <th>Jumlah</th>
-                            <th>Feedback anda</th>
-                        </tr>
-                        <?php
-                        foreach ($query as $y) {
-                        ?>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($listComment as $row) { ?>
                             <tr>
-                                <td><img src="<?php echo base_url('uploads/'); ?><?= $y->foto_produk ?>" width="100"></td>
-                                <td><?= $y->nama_produk ?></td>
-                                <td><?= $y->qty_transaksi ?></td>
-                                <td>
-                                    <?php if ($y->komentar == '') { ?>
-                                        <?php
-                                        echo $y->komentar;
-                                        ?>
-
-                                        <button class="btn btn-info btn-sm" type="button" onclick="komentar(<?php echo $y->id_transaksi; ?>)"><span class="fa fa-comment"></span> Berikan Feedback</button>
-                                    <?php } else { ?>
-                                        <?php echo $y->komentar; ?> <br>
-                                    <?php } ?>
-                                </td>
+                                <td> <?php echo $row->nama_user; ?></td>
+                                <td><?php echo $row->nama_produk; ?></td>
+                                <td><img src="<?php echo base_url() ?>/uploads/<?php echo $row->foto_produk; ?>" alt="" srcset="" width="50px" height="50px"></td>
+                                <td><?php echo ($row->komentar); ?></td>
                             </tr>
-
                         <?php } ?>
-                        <tr>
-                            <th colspan="7">
-                                <hr>
-                            </th>
-                        </tr>
-                    <?php } ?>
+                    </tbody>
                 </table>
+
             </div>
         </div>
     </div>
@@ -108,7 +71,6 @@ $level = $this->session->userdata('level');
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">

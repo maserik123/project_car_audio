@@ -1,8 +1,8 @@
-<?php 
-    $username = $this->session->userdata('nama');
-    $level = $this->session->userdata('level');
-    $kode = $this->session->userdata('kode');
-    $email = $this->session->userdata('email');
+<?php
+$username = $this->session->userdata('nama');
+$level = $this->session->userdata('level');
+$kode = $this->session->userdata('kode');
+$email = $this->session->userdata('email');
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Creative Audio Pekanbaru</title>
-    
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
@@ -43,20 +43,20 @@
             <a href=""><img src="<?php echo base_url('assets/ecommerce/img/logo.png'); ?>" alt=""></a>
         </div>
         <div class="humberger__menu__widget">
-            <?php if($username=='' && $level==''){ ?>
+            <?php if ($username == '' && $level == '') { ?>
                 <div class="header__top__right__auth">
                     <a href="<?php echo base_url('Main_Ctrl/login'); ?>"><i class="fa fa-user"></i> Login &nbsp;&nbsp;</a>
                 </div> |
                 <div class="header__top__right__auth">
                     <a href="<?php echo base_url('Main_Ctrl/register'); ?>">&nbsp;&nbsp;<i class="fa fa-user-plus"></i> Register</a>
                 </div>
-            <?php }else{ ?>
+            <?php } else { ?>
                 <div class="header__top__right__auth">
-                    <a href="<?php echo base_url('Main_Ctrl'); ?>"><i class="fa fa-user"></i> Halo, <?=$username?> &nbsp;&nbsp;</a>
+                    <a href="<?php echo base_url('Main_Ctrl'); ?>"><i class="fa fa-user"></i> Halo, <?= $username ?> &nbsp;&nbsp;</a>
                 </div> |
-				<div class="header__top__right__auth">
-					<a href="<?php echo base_url('Main_Ctrl/change_password'); ?>"><i class="fa fa-lock"></i> Password &nbsp;&nbsp;</a>
-				</div> |
+                <div class="header__top__right__auth">
+                    <a href="<?php echo base_url('Main_Ctrl/change_password'); ?>"><i class="fa fa-lock"></i> Password &nbsp;&nbsp;</a>
+                </div> |
                 <div class="header__top__right__auth">
                     <a href="<?php echo base_url('Main_Ctrl/logout'); ?>">&nbsp;&nbsp;<i class="fa fa-user"></i> Logout</a>
                 </div>
@@ -64,17 +64,17 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-				<li><a href="<?php echo base_url('Main_Ctrl'); ?>">Beranda</a>
-				<li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
-				<li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a>
-				<li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat</a>
+                <li><a href="<?php echo base_url('Main_Ctrl'); ?>">Beranda</a>
+                <li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
+                    <!-- <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a> -->
+                <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat</a>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="humberger__menu__contact">
             <ul>
-				<li><i class="fa fa-phone"></i> 08127682535</li>
-				<li><i class="fa fa-envelope"></i> creativeaudio@gmail.com</li>
+                <li><i class="fa fa-phone"></i> 08127682535</li>
+                <li><i class="fa fa-envelope"></i> creativeaudio@gmail.com</li>
             </ul>
         </div>
     </div>
@@ -95,18 +95,18 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <?php if($username=='' && $level==''){ ?>
+                            <?php if ($username == '' && $level == '') { ?>
                                 <div class="header__top__right__auth">
                                     <a href="<?php echo base_url('Main_Ctrl/login'); ?>"><i class="fa fa-user"></i> Login &nbsp;&nbsp;</a>
                                 </div> |
                                 <div class="header__top__right__auth">
                                     <a href="<?php echo base_url('Main_Ctrl/register'); ?>">&nbsp;&nbsp;<i class="fa fa-user-plus"></i> Register</a>
                                 </div>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <div class="header__top__right__auth">
-                                    <a href="<?php echo base_url('Main_Ctrl'); ?>"><i class="fa fa-user"></i> Halo, <?=$username?> &nbsp;&nbsp;</a>
+                                    <a href="<?php echo base_url('Main_Ctrl'); ?>"><i class="fa fa-user"></i> Halo, <?= $username ?> &nbsp;&nbsp;</a>
                                 </div> |
-								<div class="header__top__right__auth">
+                                <div class="header__top__right__auth">
                                     <a href="<?php echo base_url('Main_Ctrl/change_password'); ?>"><i class="fa fa-lock"></i> Password &nbsp;&nbsp;</a>
                                 </div> |
                                 <div class="header__top__right__auth">
@@ -125,27 +125,28 @@
                         <a href="#"><img src="<?php echo base_url('assets/ecommerce/img/logo.png'); ?>" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <nav class="header__menu">
                         <ul>
                             <li><a href="<?php echo base_url('Main_Ctrl'); ?>">Beranda</a>
                             <li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
-                            <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a>
-				            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat</a>
+                                <!-- <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a> -->
+                            <li><a href="<?php echo base_url('Transaksi_Ctrl/listKomentar'); ?>">Product Review</a>
+                            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat</a>
                         </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="header__cart">
                         <ul>
                             <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>"><i class="fa fa-shopping-bag"></i> <span>
-                                <?php
-                                    if($kode != ''){
-                                        $query = $this->db->query('SELECT * FROM tbl_transaksi WHERE aktif="0" AND id_user="'.$kode.'"');
-                                        echo $query->num_rows();
-                                    }
-                                ?>
-                            </span></a></li>
+                                        <?php
+                                        if ($kode != '') {
+                                            $query = $this->db->query('SELECT * FROM tbl_transaksi WHERE aktif="0" AND id_user="' . $kode . '"');
+                                            echo $query->num_rows();
+                                        }
+                                        ?>
+                                    </span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -174,8 +175,8 @@
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Klakson'); ?>">Klakson</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Sarung_Stir'); ?>">Sarung Stir</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Wiper'); ?>">Wiper</a></li>
-                         </ul>
-						<div class="hero__categories__all">
+                        </ul>
+                        <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
                             <span>Kategori Mobil</span>
                         </div>
@@ -187,7 +188,7 @@
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Mitsubishi'); ?>">Mitsubishi</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Suzuki'); ?>">Suzuki</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Toyota'); ?>">Toyota</a></li> -->
-                          </ul>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -205,7 +206,7 @@
                     <div class="hero__item set-bg" id="banner" data-setbg="<?php echo base_url('assets/ecommerce/img/Banner1.jpg'); ?>">
                         <div class="hero__text">
                             <span></span>
-                            <h2><br/></h2>
+                            <h2><br /></h2>
                             <p></p>
                         </div>
                     </div>
