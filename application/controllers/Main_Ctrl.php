@@ -73,20 +73,20 @@ class Main_Ctrl extends CI_Controller
 			$this->session->set_flashdata('kosong', 'Komentar Tidak boleh kosong !');
 			redirect('Main_Ctrl/history');
 		} else if ($comment == 'pantek') {
-			$this->session->set_flashdata('kosong', 'Komentar Kau Kotor Bangsat !');
+			$this->session->set_flashdata('kosong', 'Komentar Anda kasar !');
 			redirect('Main_Ctrl/history');
 		} else if ($comment == 'babi kau') {
-			$this->session->set_flashdata('kosong', 'Komentar Kau Kotor Bangsat !');
+			$this->session->set_flashdata('kosong', 'Komentar Anda kasar !');
 			redirect('Main_Ctrl/history');
 		} else if ($comment == 'anjing kau') {
-			$this->session->set_flashdata('kosong', 'Komentar Kau Kotor Bangsat !');
+			$this->session->set_flashdata('kosong', 'Komentar Anda kasar !');
 			redirect('Main_Ctrl/history');
 		} else if ($comment == 'Bangsat kau') {
-			$this->session->set_flashdata('kosong', 'Komentar Kau Kotor Bangsat !');
+			$this->session->set_flashdata('kosong', 'Komentar Anda kasar !');
 			redirect('Main_Ctrl/history');
 		} else {
 			$this->Transaksi->addComment($id, $comment);
-			$this->session->set_flashdata('success', 'Berhasil Menjadi orang sukses Bangsat!');
+			$this->session->set_flashdata('success', 'Berhasil !');
 			redirect('Main_Ctrl/history');
 		}
 	}
