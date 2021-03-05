@@ -25,6 +25,15 @@ class Transaksi extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function getDataByIdProdukUser($id_produk, $id_user)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_transaksi');
+        $this->db->where('id_produk', $id_produk);
+        $this->db->where('id_user', $id_user);
+        return $this->db->get()->result();
+    }
+
     public function addComment($id, $comment)
     {
         $this->db->query('update tbl_transaksi set komentar = "' . $comment . '" where id_transaksi = "' . $id . '"');

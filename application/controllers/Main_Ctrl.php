@@ -17,6 +17,7 @@ class Main_Ctrl extends CI_Controller
 	public function index()
 	{
 		$data['produk'] = $this->Produk->get_all();
+
 		$this->load->view('produk/produk_catalog', $data);
 	}
 
@@ -28,6 +29,13 @@ class Main_Ctrl extends CI_Controller
 	public function register()
 	{
 		$this->load->view('user/register');
+	}
+
+	public function getProdukById($id)
+	{
+		$data       = $this->Produk->getById($id);
+		echo json_encode(array('data' => $data));
+		die;
 	}
 
 	public function forgetpassword()

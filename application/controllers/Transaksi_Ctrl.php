@@ -186,17 +186,36 @@ class Transaksi_Ctrl extends CI_Controller
                 );
                 $this->Produk->update($id_produk, $dataBarang);
 
-                $data = array(
-                    'id_produk' => $this->input->post('id_produk', TRUE),
-                    'id_user' => $id,
-                    'id_pembayaran' => 1,
-                    'tgl_transaksi' => date('Y-m-d'),
-                    'qty_transaksi' => $this->input->post('qty_transaksi', TRUE),
-                    'total_transaksi' => $this->input->post('qty_transaksi', TRUE) * $this->input->post('harga_produk', TRUE),
-                );
-                $this->Transaksi->insert($data);
+                // $data = array(
+                //     'id_produk' => $this->input->post('id_produk', TRUE),
+                //     'id_user' => $id,
+                //     'id_pembayaran' => 1,
+                //     'tgl_transaksi' => date('Y-m-d'),
+                //     'qty_transaksi' => $this->input->post('qty_transaksi', TRUE),
+                //     'total_transaksi' => $this->input->post('qty_transaksi', TRUE) * $this->input->post('harga_produk', TRUE),
+                // );
+
+                $cekData = $this->Transaksi->getDataByIdProdukUser($this->input->post('id_produk'), $id);
+                if (($cekData[0]->id_produk == $this->input->post('id_produk')) && ($cekData[0]->id_user == $id)) {
+                    $data['id_produk'] = $this->input->post('id_produk');
+                    $data['id_user'] = $id;
+                    $data['id_pembayaran'] = 1;
+                    $data['tgl_transaksi'] = date('Y-m-d');
+                    $data['qty_transaksi'] = $cekData[0]->qty_transaksi + $this->input->post('qty_transaksi');
+                    $data['total_transaksi'] = $data['qty_transaksi'] * $this->input->post('harga_produk');
+                    $this->Transaksi->update($cekData[0]->id_transaksi, $data);
+                } else {
+                    $data['id_produk'] = $this->input->post('id_produk');
+                    $data['id_user'] = $id;
+                    $data['id_pembayaran'] = 1;
+                    $data['tgl_transaksi'] = date('Y-m-d');
+                    $data['qty_transaksi'] = $this->input->post('qty_transaksi');
+                    $data['total_transaksi'] = $this->input->post('qty_transaksi') * $this->input->post('harga_produk');
+                    $this->Transaksi->insert($data);
+                }
+
                 $this->session->set_flashdata('message', '<script>alert("Berhasil menambahkan produk ke keranjang");</script>');
-                redirect(site_url('Main_Ctrl'));
+                redirect(site_url('Main_Ctrl/keranjang'));
             }
         }
     }

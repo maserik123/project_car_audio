@@ -45,7 +45,7 @@ $level = $this->session->userdata('level');
                 <table style="width: 100%;">
                     <thead>
                         <tr>
-                            <th><strong>Nama Akun</strong></th>
+                            <!-- <th><strong>Nama Akun</strong></th> -->
                             <th><strong>Nama Barang</strong></th>
                             <th><strong>Gambar Barang</strong></th>
                             <th><strong>Komentar</strong></th>
@@ -54,7 +54,7 @@ $level = $this->session->userdata('level');
                     <tbody>
                         <?php foreach ($listComment as $row) { ?>
                             <tr>
-                                <td> <?php echo $row->nama_user; ?></td>
+                                <!-- <td> <?php echo $row->nama_user; ?></td> -->
                                 <td><?php echo $row->nama_produk; ?></td>
                                 <td><img src="<?php echo base_url() ?>/uploads/<?php echo $row->foto_produk; ?>" alt="" srcset="" width="50px" height="50px"></td>
                                 <td><?php echo ($row->komentar); ?></td>
