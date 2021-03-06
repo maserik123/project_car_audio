@@ -134,7 +134,10 @@ $level = $this->session->userdata('level');
 							<input type="number" step="1" min="1" max="" name="qty_transaksi" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
 							<input type="button" value="+" class="plus">
 						</div>
-						<button type="button" class="btn btn-warning btn-sm" onclick="detailProduk(<?php echo $u->id_produk; ?>)">
+						<!-- <button type="button" class="btn btn-warning btn-sm" onclick="detailProduk(<?php echo $u->id_produk; ?>)">
+							<li class="fa fa-search"></li> Detail
+						</button> -->
+						<button type="button" class="btn btn-warning btn-sm" onclick="window.location ='<?php echo base_url('Main_Ctrl/detailProduk/') . $kode; ?>'">
 							<li class="fa fa-search"></li> Detail
 						</button>
 						<button type="submit" class="btn btn-success btn-sm" value="Beli">

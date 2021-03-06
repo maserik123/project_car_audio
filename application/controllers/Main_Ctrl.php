@@ -21,6 +21,15 @@ class Main_Ctrl extends CI_Controller
 		$this->load->view('produk/produk_catalog', $data);
 	}
 
+	public function detailProduk($id_produk = '')
+	{
+		# code...
+		$data['getProdukById']       = $this->Produk->getDetailProduk($id_produk);
+
+		$this->load->view('produk/produk_detail', $data);
+	}
+
+
 	public function login()
 	{
 		$this->load->view('user/login');

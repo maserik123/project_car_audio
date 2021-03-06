@@ -17,6 +17,7 @@ class Transaksi_Ctrl extends CI_Controller
         $this->load->library('datatables');
 
 
+
         if (!$this->session->userdata('logined') || $this->session->userdata('logined') != true) {
             //redirect('/');
         }
@@ -140,7 +141,7 @@ class Transaksi_Ctrl extends CI_Controller
 
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('bukti_pembayaran')) {
-            $this->create();
+            $this->nexmo->create();
         } else {
             $result = $this->upload->data();
             $data = array(
