@@ -16,8 +16,6 @@ class Transaksi_Ctrl extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('datatables');
 
-
-
         if (!$this->session->userdata('logined') || $this->session->userdata('logined') != true) {
             //redirect('/');
         }

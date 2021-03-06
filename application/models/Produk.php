@@ -16,6 +16,9 @@ class Produk extends CI_Model
     {
         return $this->db->query('select * from tbl_produk where aktif!=1 order by id_produk DESC')->result();
     }
+
+
+
     function get_by_kategoriProduk($kategori)
     {
         return $this->db->query('select * from tbl_produk where aktif!=1 AND kategori_produk="' . $kategori . '" order by id_produk DESC')->result();
@@ -52,9 +55,9 @@ class Produk extends CI_Model
 
     public function getDetailProduk($id_produk)
     {
-        $this->db->select('tp.id_produk, tp.kode_produk, tp.nama_produk, tp.harga_beli, tp.harga_jual, tp.stok_produk, tp.kategori_produk, tp.kategori_mobil, tp.foto_produk, tp.foto_produk1, tp.foto_produk2, tp.foto_produk3, tp.foto_produk4, tp.foto_produk5, tp.deskripsi_produk, tt.komentar');
+        $this->db->select('tp.id_produk, tp.kode_produk, tp.nama_produk, tp.harga_beli, tp.harga_jual, tp.stok_produk, tp.kategori_produk, tp.kategori_mobil, tp.foto_produk, tp.foto_produk1, tp.foto_produk2, tp.foto_produk3, tp.foto_produk4, tp.foto_produk5, tp.deskripsi_produk, tp.rop, tp.eoq');
         $this->db->from('tbl_produk tp');
-        $this->db->join('tbl_transaksi tt', 'tt.id_produk = tp.id_produk', 'left');
+        // $this->db->join('tbl_transaksi tt', 'tt.id_produk = tp.id_produk', 'left');
         $this->db->where('tp.id_produk', $id_produk);
         return $this->db->get()->result();
     }

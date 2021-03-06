@@ -25,6 +25,24 @@ class Transaksi extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function getKomentarByIdProduk($id_produk)
+    {
+        $this->db->select('tt.komentar, tu.nama_user');
+        $this->db->from('tbl_transaksi tt');
+        $this->db->join('tbl_user tu', 'tu.id_user = tt.id_user', 'left');
+        $this->db->where('id_produk', $id_produk);
+        return $this->db->get()->result();
+    }
+
+    public function getDataByIdUser($id_user, $aktif)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_transaksi');
+        $this->db->where('id_user', $id_user);
+        $this->db->where('aktif', $aktif);
+        return $this->db->get()->row();
+    }
+
     public function getDataByIdProdukUser($id_produk, $id_user)
     {
         $this->db->select('*');
@@ -100,6 +118,9 @@ class Transaksi extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
+
+
+
     function update($kode, $data)
     {
         $this->db->where($this->id_transaksi, $kode);
