@@ -238,6 +238,9 @@ $level = $this->session->userdata('level');
                             <input type="button" value="+" class="plus">
                         </div>
                         <br>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="window.location='<?php echo base_url('Main_Ctrl') ?>'">
+                            <li class="fa fa-list"></li> Lihat Daftar Produk
+                        </button>
                         <button type="submit" class="btn btn-success btn-sm" value="Beli">
                             <li class="fa fa-shopping-cart"></li> Tambahkan ke keranjang
                         </button>

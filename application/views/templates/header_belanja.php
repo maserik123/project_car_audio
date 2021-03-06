@@ -394,7 +394,7 @@ $email = $this->session->userdata('email');
                             <li><a href="<?php echo base_url('Main_Ctrl'); ?>">Beranda</a>
                             <li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
                                 <!-- <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a> -->
-                            <li><a href="<?php echo base_url('Transaksi_Ctrl/listKomentar'); ?>">Product Review</a>
+                                <!-- <li><a href="<?php echo base_url('Transaksi_Ctrl/listKomentar'); ?>">Product Review</a> -->
                             <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat</a>
                         </ul>
                     </nav>
@@ -402,14 +402,14 @@ $email = $this->session->userdata('email');
                 <div class="col-lg-2">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>"><i class="fa fa-shopping-bag"></i> <span>
+                            <li>Keranjang <a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>"> <i class="fa fa-shopping-bag"></i> <span>
                                         <?php
                                         if ($kode != '') {
                                             $query = $this->db->query('SELECT * FROM tbl_transaksi WHERE aktif="0" AND id_user="' . $kode . '"');
                                             echo $query->num_rows();
                                         }
                                         ?>
-                                    </span></a></li>
+                                    </span> </a></li>
                         </ul>
                     </div>
                 </div>
