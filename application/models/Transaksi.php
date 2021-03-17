@@ -119,19 +119,31 @@ class Transaksi extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-
-
     function update($kode, $data)
     {
         $this->db->where($this->id_transaksi, $kode);
         $this->db->update($this->table, $data);
     }
+
+    function insert_keranjang($data)
+    {
+        $this->db->insert('tbl_keranjang', $data);
+    }
+
+    function update_keranjang($kode, $data)
+    {
+        $this->db->where('id_transaksi', $kode);
+        $this->db->update('tbl_keranjang', $data);
+    }
+
     function updateCheckout($kode, $aktif, $data)
     {
         $this->db->where($this->id_user, $kode);
         $this->db->where($this->aktif, $aktif);
         $this->db->update($this->table, $data);
+        // $this->delete($kode);
     }
+
     function delete($id)
     {
         $this->db->where($this->id_transaksi, $id);

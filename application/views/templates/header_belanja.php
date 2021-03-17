@@ -395,7 +395,9 @@ $email = $this->session->userdata('email');
                             <li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
                                 <!-- <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a> -->
                                 <!-- <li><a href="<?php echo base_url('Transaksi_Ctrl/listKomentar'); ?>">Product Review</a> -->
-                            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat Belanja Gue</a>
+                            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat Belanja</a>
+                            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Transaksi Elu</a>
+
                         </ul>
 
                     </nav>
