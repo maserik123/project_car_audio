@@ -41,7 +41,7 @@ $level = $this->session->userdata('level');
                         <input type="hidden" value="<?php echo date('Y-m-d') ?>" class="form-control" name="tgl_pembayaran" readonly>
                     </div><br>
                     <div class="col-lg-4">
-                        Bukti Bayar : <input type="file" class="form-control" name="bukti_pembayaran">
+                        Bukti Bayar : <input type="file" class="form-control" name="bukti_pembayaran" required>
                     </div><br>
                     <div class="col-lg-4">
                         <span class="btn btn-md btn-danger" OnClick="window.location='<?php echo base_url('Transaksi_Ctrl/checkout') ?>'">Kembali</span>

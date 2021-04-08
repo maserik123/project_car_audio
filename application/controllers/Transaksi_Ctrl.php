@@ -170,17 +170,17 @@ class Transaksi_Ctrl extends CI_Controller
         $config['max_height']           = 5000;
         $this->load->library('upload', $config);
 
-        // if (!$this->upload->do_upload('bukti_pembayaran')) {
-        // } else {
-        $result = $this->upload->data();
-        $data = array(
-            'total_pembayaran' => $this->input->post('total_pembayaran'),
-            'status_pembayaran' => 'Sudah Bayar',
-            'tgl_pembayaran' => $this->input->post('tgl_pembayaran'),
-            'kurir_pengiriman' => $this->input->post('kurir_pengiriman'),
-            'bukti_pembayaran' => $result['file_name']
-        );
-        // }
+        if (!$this->upload->do_upload('bukti_pembayaran')) {
+        } else {
+            $result = $this->upload->data();
+            $data = array(
+                'total_pembayaran' => $this->input->post('total_pembayaran'),
+                'status_pembayaran' => 'Sudah Bayar',
+                'tgl_pembayaran' => $this->input->post('tgl_pembayaran'),
+                'kurir_pengiriman' => $this->input->post('kurir_pengiriman'),
+                'bukti_pembayaran' => $result['file_name']
+            );
+        }
         $this->Pembayaran->insert($data);
 
 
