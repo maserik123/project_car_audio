@@ -55,6 +55,7 @@ class Transaksi_Ctrl extends CI_Controller
         $data['getProvinsi'] = $this->Wilayah->getDataProvinsi();
         $data['getKabupaten'] = $this->Wilayah->getDataKabupaten();
         $data['getKecamatan'] = $this->Wilayah->getDataKecamatan();
+        $data['getByIdPembayaran'] = $this->Transaksi->getByIdPembayaran(1);
         $data['total'] = $this->Produk->get_total($id);
         $data['getKurir'] = $this->Kurir->getData();
         $data['pengiriman'] = $pengiriman;

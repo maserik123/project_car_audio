@@ -138,8 +138,11 @@ $level = $this->session->userdata('level');
                             <select name="kurir_pengiriman" id="kurir_pengiriman" class="form-control" required>
                                 <option value="">Pilih Logistik Pengiriman</option>
                                 <?php foreach ($getKurir as $r) { ?>
-
-                                    <option value="<?php echo $r->id; ?>"><?php echo $r->nama; ?></option>
+                                    <?php if ($getByIdPembayaran->id_kurir == $r->id) { ?>
+                                        <option value="<?php echo $r->id; ?>" selected>--<?php echo $r->nama; ?>--</option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $r->id; ?>">--<?php echo $r->nama; ?>--</option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -159,14 +162,14 @@ $level = $this->session->userdata('level');
                             <th>Total Belanja</th>
                             <th>Rp. <?php echo number_format($total->total, 0, ",", "."); ?></th>
                         </tr>
-                        <tr style="font-size:17px;">
+                        <!-- <tr style="font-size:17px;">
                             <th>Total Biaya Pengiriman</th>
                             <th>Rp. <?php echo number_format($user->ongkir, 0, ",", "."); ?></th>
                         </tr>
                         <tr style="font-size:17px;">
                             <th>Kurir Pengiriman</th>
                             <th></th>
-                        </tr>
+                        </tr> -->
                         <input type="hidden" name="total_belanja" id="total_belanja" value="<?php echo $total->total; ?>">
                         <!-- <tr style="font-size:17px;">
                             <th>Total Pembayaran</th>

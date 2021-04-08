@@ -25,6 +25,13 @@ class Transaksi extends CI_Model
         return $this->db->get()->row();
     }
 
+    function getByIdPembayaran($id_pembayaran)
+    {
+        $this->db->select('*');
+        $this->db->where('id_pembayaran', $id_pembayaran);
+        return $this->db->get('tbl_transaksi')->row();
+    }
+
     public function getKomentarByIdProduk($id_produk)
     {
         $this->db->select('tt.komentar, tu.nama_user');
