@@ -173,17 +173,16 @@ $level = $this->session->userdata('level');
 
                             <?php $getKomentarByIdProduk = $this->Transaksi->getKomentarByIdProduk($row->id_produk); ?>
                             <tr>
-                                <th style="font-size:14px;">Hasil Review :</th>
+                                <th style="font-size:14px;">Ulasan Produk :</th>
                             </tr>
                             <?php foreach ($getKomentarByIdProduk as $r) { ?>
                                 <tr>
-                                    <td style="font-size: 14px;"> <?php echo $r->komentar == '' ? '' : '<div style="font-size:14px;">' . $r->nama_user . '</div>'; ?> <div style="font-size: 12px;">
+                                    <td style="font-size: 14px;"> <?php echo $r->komentar == '' ? '' : '<div style="font-size:14px;"><li class="fa fa-user"></li> ' . $r->nama_user . '</div>'; ?> <div style="font-size: 12px;">
                                             <?php if ($r->komentar == '') {
                                             } else { ?>
                                                 <li class="fa fa-comment"></li> Comments : <?php echo ('' . $r->komentar . ''); ?>
                                             <?php } ?>
                                         </div>
-                                        <hr>
                                     </td>
                                 </tr>
                             <?php } ?>

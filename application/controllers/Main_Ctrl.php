@@ -21,6 +21,13 @@ class Main_Ctrl extends CI_Controller
 		$this->load->view('produk/produk_catalog', $data);
 	}
 
+	public function produk()
+	{
+		$data['produk'] = $this->Produk->get_all();
+
+		$this->load->view('produk/produk_daftar', $data);
+	}
+
 	public function detailProduk($id_produk = '')
 	{
 		# code...

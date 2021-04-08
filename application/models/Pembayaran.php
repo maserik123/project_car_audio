@@ -15,6 +15,15 @@ class Pembayaran extends CI_Model
     {
         return $this->db->query('select * from tbl_pembayaran where aktif!=1 order by id_pembayaran DESC')->result();
     }
+
+    public function getKecamatan()
+    {
+        $this->db->select('*');
+        $this->db->from('wilayah_kecamatan');
+        $this->db->order_by('nama', 'asc');
+        return $this->db->get()->result();
+    }
+
     function get_by_kode($kode)
     {
         $this->db->where($this->id_pembayaran, $kode);

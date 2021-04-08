@@ -29,6 +29,10 @@ $email = $this->session->userdata('email');
     <link rel="stylesheet" href="<?php echo base_url('assets/ecommerce/css/slicknav.min.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/ecommerce/css/style.css'); ?>" type="text/css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
     <script type='text/javascript'>
         //<![CDATA[
         ! function(e, t) {
@@ -392,11 +396,12 @@ $email = $this->session->userdata('email');
                     <nav class="header__menu">
                         <ul>
                             <li><a href="<?php echo base_url('Main_Ctrl'); ?>">Beranda</a>
+                            <li><a href="<?php echo base_url('Main_Ctrl/produk'); ?>">Produk</a>
                             <li><a href="<?php echo base_url('Main_Ctrl/about'); ?>">Tentang Kami</a>
                                 <!-- <li><a href="<?php echo base_url('Main_Ctrl/keranjang'); ?>">Keranjang</a> -->
                                 <!-- <li><a href="<?php echo base_url('Transaksi_Ctrl/listKomentar'); ?>">Product Review</a> -->
                             <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Riwayat Belanja</a>
-                            <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Transaksi Elu</a>
+                                <!-- <li><a href="<?php echo base_url('Main_Ctrl/history'); ?>">Transaksi Anda</a> -->
 
                         </ul>
 
@@ -427,7 +432,7 @@ $email = $this->session->userdata('email');
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-3">
                     <div class="hero__categories" id="kategori">
                         <div class="hero__categories__all">
@@ -441,19 +446,6 @@ $email = $this->session->userdata('email');
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Klakson'); ?>">Klakson</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Sarung_Stir'); ?>">Sarung Stir</a></li>
                             <li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Wiper'); ?>">Wiper</a></li>
-                        </ul>
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Kategori Mobil</span>
-                        </div>
-                        <ul>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/All'); ?>">All</a></li>
-                            <!-- <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Daihatsu'); ?>">Daihatsu</a></li>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Honda'); ?>">Honda</a></li>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Hyundai'); ?>">Hyundai</a></li>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Mitsubishi'); ?>">Mitsubishi</a></li>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Suzuki'); ?>">Suzuki</a></li>
-                            <li><a href="<?php echo base_url('Main_Ctrl/kategori_mobil/Toyota'); ?>">Toyota</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -477,7 +469,7 @@ $email = $this->session->userdata('email');
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- Hero Section End -->

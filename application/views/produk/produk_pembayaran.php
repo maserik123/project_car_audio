@@ -3,6 +3,7 @@ $this->load->view('templates/header_belanja');
 $level = $this->session->userdata('level');
 ?>
 <!-- Featured Section Begin -->
+<br><br>
 <section class="featured spad">
     <div class="container">
         <div class="row">
@@ -13,17 +14,23 @@ $level = $this->session->userdata('level');
                 Silahkan melakukan pembayaran ke No. Rekening Berikut:<br>
                 - 7101869088 (BSM) <br>
                 - 465401020684052 (BRI) <br><br>
-                Sebesar : <br>
-                <b>Rp. <?php echo number_format($total, 0, ",", "."); ?></b><br><br>
+
 
                 Alamat Penerima : <br>
                 <b><?= $user->alamat_user ?>, Prov. <?= $user->provinsi_user ?>, Kota. <?= $user->kota_user ?>, Kec. <?= $user->kecamatan_user ?>, Kode Pos : <?= $user->kode_pos ?><br>
                     Telp. <?= $user->telp_user ?> (<?= $user->nama_user ?>)</b>
                 <br><br>
 
-                Kurir Pengiriman : <br>
-                <b><?= $pengiriman ?></b>
+                Total Belanja : <br>
+                <b><?= number_format($totalBelanja, 0, ",", "."); ?></b>
                 <br><br>
+
+                Kurir Pengiriman : <br>
+                <b><?= $kurir . ' ( Rp.' . number_format($hargaKurir, 0, ",", ".") . ')'; ?></b>
+                <br><br>
+
+                Total Pembayaran Sebesar : <br>
+                <b>Rp. <?php echo number_format($total, 0, ",", "."); ?></b><br><br>
 
                 <hr>Silahkan upload bukti pembayaran di sini :
                 <hr>
@@ -34,10 +41,10 @@ $level = $this->session->userdata('level');
                         <input type="hidden" value="<?php echo date('Y-m-d') ?>" class="form-control" name="tgl_pembayaran" readonly>
                     </div><br>
                     <div class="col-lg-4">
-                        Bukti Bayar : <input type="file" class="form-control" name="bukti_pembayaran" required>
+                        Bukti Bayar : <input type="file" class="form-control" name="bukti_pembayaran">
                     </div><br>
                     <div class="col-lg-4">
-                        <span class="btn btn-md btn-danger" OnClick="history.go(-1);">Kembali</span>
+                        <span class="btn btn-md btn-danger" OnClick="window.location='<?php echo base_url('Transaksi_Ctrl/checkout') ?>'">Kembali</span>
                         <input type="submit" class="btn btn-md btn-success" value="Simpan">
                     </div>
                 </form>

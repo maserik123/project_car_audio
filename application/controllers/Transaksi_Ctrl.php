@@ -12,7 +12,10 @@ class Transaksi_Ctrl extends CI_Controller
         $this->load->model('Transaksi');
         $this->load->model('Produk');
         $this->load->model('Pembayaran');
+        $this->load->model('Wilayah');
         $this->load->model('User');
+        $this->load->model('Kurir');
+
         $this->load->library('form_validation');
         $this->load->library('datatables');
 
@@ -42,15 +45,31 @@ class Transaksi_Ctrl extends CI_Controller
         $data['transaksi'] = $this->Transaksi->get_by_userlimit($kode);
         $this->load->view('transaksi/transaksi_detail_limit', $data);
     }
+
     public function checkout()
     {
         $pengiriman = $this->input->post('kurir_pengiriman', TRUE);
         $id = $this->session->userdata('kode');
         $data['produk'] = $this->Produk->get_keranjang($id);
-        $data['user'] = $this->User->get_by_kode($id);
+        $data['user'] = $this->User->getDataById($id);
+        $data['getProvinsi'] = $this->Wilayah->getDataProvinsi();
+        $data['getKabupaten'] = $this->Wilayah->getDataKabupaten();
+        $data['getKecamatan'] = $this->Wilayah->getDataKecamatan();
         $data['total'] = $this->Produk->get_total($id);
+        $data['getKurir'] = $this->Kurir->getData();
         $data['pengiriman'] = $pengiriman;
         $this->load->view('produk/produk_checkout', $data);
+    }
+
+    public function getProvinsiByJson()
+    {
+        $id   = $this->input->post('id');
+        $data = $this->Wilayah->getDataProvinsi($id);
+        $csrf = array(
+            'token' => $this->security->get_csrf_hash()
+        );
+        echo json_encode(array('result' => $data, 'csrf' => $csrf));
+        die;
     }
 
     public function listKomentar()
@@ -62,23 +81,35 @@ class Transaksi_Ctrl extends CI_Controller
     public function checkout_alamat()
     {
         $id = $this->session->userdata('kode');
-
+        $getKecamatanById = $this->Wilayah->getKecamatanById($this->input->post('id_kecamatan'));
         $data = array(
             'id_user' => $id,
             'nama_user' => $this->input->post('nama_user', TRUE),
             'telp_user' => $this->input->post('telp_user', TRUE),
             'alamat_user' => $this->input->post('alamat_user', TRUE),
             'provinsi_user' => $this->input->post('provinsi_user', TRUE),
-            'kecamatan_user' => $this->input->post('kecamatan_user', TRUE),
+            'id_kecamatan' => $this->input->post('id_kecamatan', TRUE),
+            'kecamatan_user' => $getKecamatanById[0]->nama,
             'kota_user' => $this->input->post('kota_user', TRUE),
             'kode_pos' => $this->input->post('kode_pos', TRUE),
         );
-
-        $this->User->update($id, $data);
-
+        $getUserById = $this->User->getById($this->session->userdata('kode'));
+        if (!empty($getUserById->id_kecamatan)) {
+        } else {
+            $this->User->update($id, $data);
+        }
+        $total_belanja = $this->input->post('total_belanja');
         $pengiriman = $this->input->post('kurir_pengiriman', TRUE);
-        $total = $this->input->post('totalBayar', TRUE);
+
+        $this->Transaksi->update1(1, $pengiriman);
+
+        $getDataKurir = $this->Kurir->getById($pengiriman);
+        $total = ($total_belanja + $getKecamatanById[0]->ongkir + $getDataKurir->harga);
         $data2['pengiriman'] = $pengiriman;
+        $data2['totalBelanja'] = $total_belanja;
+        $data2['ongkirDaerah'] = $getKecamatanById[0]->ongkir;
+        $data2['kurir'] = $getDataKurir->nama;
+        $data2['hargaKurir'] = ($getDataKurir->harga + $getKecamatanById[0]->ongkir);
         $data2['total'] = $total;
         $data2['user'] = $this->User->get_by_kode($id);
         $this->load->view('produk/produk_pembayaran', $data2);

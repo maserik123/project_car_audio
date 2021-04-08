@@ -49,6 +49,7 @@ $this->load->view('templates/header_belanja');
 $level = $this->session->userdata('level');
 ?>
 <!-- Featured Section Begin -->
+<br><br>
 <section class="featured spad">
     <div class="container">
         <div class="row">
@@ -104,7 +105,7 @@ $level = $this->session->userdata('level');
                                 <td style="font-size: 13px;"><?= $y->nama_produk ?></td>
                                 <td style="font-size: 13px;"><img src="<?php echo base_url('uploads/'); ?><?= $y->foto_produk ?>" width="50px" height="50px"></td>
                                 <td style="font-size: 13px;"><?= $y->qty_transaksi ?></td>
-                                <td style="font-size: 13px;">Rp. <?php echo number_format($u->total_pembayaran, 0, ",", "."); ?></td>
+                                <td style="font-size: 13px;">Rp. <?php echo number_format($u->total_transaksi, 0, ",", "."); ?></td>
                                 <td style="font-size: 12px;"><?= tgl_indo($u->tgl_pembayaran); ?></td>
 
                                 <td style="font-size: 13px;">

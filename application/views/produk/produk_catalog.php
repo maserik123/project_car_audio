@@ -113,6 +113,45 @@ $level = $this->session->userdata('level');
 <section class="featured spad">
 	<div class="container">
 		<div class="row">
+			<div class="col-lg-3">
+				<div class="hero__categories" id="kategori">
+					<div class="hero__categories__all">
+						<i class="fa fa-bars"></i>
+						<span>Kategori Produk</span>
+					</div>
+					<ul>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Alarm'); ?>">Alarm</a></li>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Audio'); ?>">Audio</a></li>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/TV'); ?>">TV</a></li>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Klakson'); ?>">Klakson</a></li>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Sarung_Stir'); ?>">Sarung Stir</a></li>
+						<li><a href="<?php echo base_url('Main_Ctrl/kategori_produk/Wiper'); ?>">Wiper</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<div class="hero__search">
+					<div class="hero__search__form">
+						<form method="POST" action="<?php echo base_url('Main_Ctrl/pencarian'); ?>">
+							<div class="hero__search__categories">
+								Pencarian
+							</div>
+							<input type="text" name="cari" placeholder="Apa yang kamu butuhkan?">
+							<button type="submit" class="site-btn">SEARCH</button>
+						</form>
+					</div>
+				</div>
+				<div class="hero__item set-bg" id="banner" data-setbg="<?php echo base_url('assets/ecommerce/img/Banner1.jpg'); ?>">
+					<div class="hero__text">
+						<span></span>
+						<h2><br /></h2>
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
 			<p><?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?></p>
 			<?php
 			$no = 1;

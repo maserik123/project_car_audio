@@ -43,6 +43,15 @@ class Transaksi extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function getCheckoutByIdPembayaran($id_pembayaran)
+    {
+        $this->db->select('tt.id_transaksi, tt.id_produk, tt.id_pembayaran, tt.id_user, tt.tgl_transaksi, tt.qty_transaksi, tt.total_transaksi, tt.komentar, tt.aktif, tp.id_pembayaran, tp.total_pembayaran, tp.bukti_pembayaran, tp.nomor_resi, tp.kurir_pengiriman, tp.tgl_pembayaran, tp.status_pembayaran');
+        $this->db->from('tbl_transaksi tt');
+        $this->db->join('tbl_pembayaran tp', 'tp.id_pembayaran = tt.id_pembayaran', 'left');
+        $this->db->where('tt.id_pembayaran', $id_pembayaran);
+        return $this->db->get()->result();
+    }
+
     public function getDataByIdProdukUser($id_produk, $id_user)
     {
         $this->db->select('*');
@@ -124,6 +133,12 @@ class Transaksi extends CI_Model
         $this->db->where($this->id_transaksi, $kode);
         $this->db->update($this->table, $data);
     }
+
+    public function update1($id, $data)
+    {
+        $this->db->query('update tbl_transaksi set id_kurir = "' . $data . '" where id_pembayaran = "' . $id . '"');
+    }
+
 
     function insert_keranjang($data)
     {
